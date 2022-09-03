@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>All users</title>
+</head>
+<body>
+<h1>All Users</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Edit User</th>
+        <th scope="col">Delete User</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${allUsers}" >
+        <td th:text="${user.getId()}"/>
+        <td th:text="${user.getFirstName()}"/>
+        <td th:text="${user.getLastName()}"/>
+        <td th:text="${user.getEmail()}"/>
+        <td><a th:href="@{/edit(id=${user.id})}">Edit user</a></td>
+        <td><a th:href="@{/delete(id=${user.id})}">Delete user</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="new">Add new User</a>
+<br>
+<br>
+<a href="/">Back to Main page</a>
+
+</body>
+</html>
