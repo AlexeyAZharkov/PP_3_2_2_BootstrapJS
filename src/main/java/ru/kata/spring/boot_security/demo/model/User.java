@@ -55,12 +55,12 @@ public class User implements UserDetails {
       this.lastName = lastName;
    }
 
-   public String getUserPassword() {
-      return password;
-   }
+//   public String getUserPassword() {
+//      return password;
+//   }
 
-   public void setPassword(String email) {
-      this.password = email;
+   public void setPassword(String password) {
+      this.password = password;
    }
 
    @Override
@@ -79,13 +79,13 @@ public class User implements UserDetails {
    }
 
    @Override
-   public String getPassword() {
-      return null;
+   public String getPassword()  {
+      return password;
    }
 
    @Override
-   public String getUsername() {
-      return null;
+   public String getUsername()  {
+      return firstName;
    }
 
    @Override
