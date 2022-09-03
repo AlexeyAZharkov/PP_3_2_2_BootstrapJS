@@ -23,9 +23,9 @@ public class UsersController {
 
 	@GetMapping(value = "/set3users")
 	public String set3users(ModelMap model) {
-		userServiceImp.addUser(new User("Alex", "Zh", "axx@uu"));
-		userServiceImp.addUser(new User("Alex1", "Zh1", "ax11x@uu"));
-		userServiceImp.addUser(new User("Alex2", "Zh2", "ax22x@uu"));
+		userServiceImp.addUser(new User("Alex", "Zh", "axx"));
+		userServiceImp.addUser(new User("Alex1", "Zh1", "ax11x"));
+		userServiceImp.addUser(new User("Alex2", "Zh2", "ax22x"));
 		return "redirect:/users";
 	}
 
