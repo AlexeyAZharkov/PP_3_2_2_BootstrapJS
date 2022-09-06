@@ -64,4 +64,10 @@ public class UsersController {
 		return "redirect:/users";
 	}
 
+	@GetMapping("/user")
+	public String showUser(@RequestParam(value = "id", required = false) Long id, Model model) {
+		model.addAttribute("userbyid", userServiceImp.getUserById(id));
+		return "user";
+	}
+
 }

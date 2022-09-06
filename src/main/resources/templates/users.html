@@ -22,7 +22,8 @@
     </thead>
     <tbody>
     <tr th:each="user: ${allUsers}" >
-        <td th:text="${user.getId()}"/>
+<!--        <td th:text="${user.getId()}"/>-->
+        <td><a th:href="@{/user(id=${user.id})}" th:text="${user.getId()}"></a></td>
         <td th:text="${user.getFirstName()}"/>
         <td th:text="${user.getLastName()}"/>
         <td th:text="${user.getUserPassword()}"/>
@@ -37,6 +38,9 @@
 <br>
 <br>
 <a href="/">Back to Main page</a>
+<br>
+<br>
+<a href="/logout">Logout</a>
 
 </body>
 </html>
