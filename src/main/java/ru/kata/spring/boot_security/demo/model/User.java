@@ -55,9 +55,9 @@ public class User implements UserDetails {
       this.lastName = lastName;
    }
 
-//   public String getUserPassword() {
-//      return password;
-//   }
+   public String getUserPassword() {
+      return password;
+   }
 
    public void setPassword(String password) {
       this.password = password;

@@ -47,11 +47,28 @@ public class UserServiceImp implements UserDetailsService {
    }
 
    @Override
+   @Transactional(readOnly = true)
    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-      User user = userDaoImp.getUserByName(username);
-      if(user == null) {
-         throw new UsernameNotFoundException("User not found!");
+      Optional<User> user = Optional.ofNullable(userDaoImp.getUserByName(username));
+//      User user = userRepository.findByUsername(username);
+      if (user.isEmpty()) {
+         throw new UsernameNotFoundException("User not found");
       }
-      return user;
+      return user.get();
+
+//      System.out.println("username  -- " + username);
+
+//      if (username == "user1") {
+//         return new User("user1", "Zh", "pass1");
+////         return new User("user1", "Zh", "pass1");
+//      }
+
+
+//      User user = userDaoImp.getUserByName(username);
+//      if(user == null) {
+//         throw new UsernameNotFoundException("User not found!");
+//      }
+//      return user;
+
    }
 }

@@ -16,7 +16,7 @@ public class UsersController {
 		this.userServiceImp = userServiceImp;
 	}
 
-	@GetMapping(value = "/")
+	@GetMapping(value = "")
 	public String printWelcome(ModelMap model) {
 		return "index";
 	}

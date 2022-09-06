@@ -22,8 +22,11 @@ public class AuthProviderImp implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
+//        System.out.println("authentication.getName() -- " + username);
         User user = (User) userServiceImp.loadUserByUsername(username);
+
         String password = authentication.getCredentials().toString();
+        System.out.println("authentication.getCredentials().toString() -- " + password);
         System.out.println(password + user + user.getPassword());
         if (!password.equals(user.getPassword())) {
             throw new BadCredentialsException("Incorrect password");

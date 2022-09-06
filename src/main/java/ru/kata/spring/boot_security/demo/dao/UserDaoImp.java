@@ -35,7 +35,22 @@ public class UserDaoImp implements UserDao {
     }
 
     public User getUserByName(String name) {
-        return entityManager.getReference(User.class, name);
+//        return entityManager.getReference(User.class, name);
+        List<User> queryList = entityManager.createQuery(
+                        "SELECT u FROM User u WHERE u.firstName LIKE :custName", User.class)
+                .setParameter("custName", name)
+                .getResultList();
+        if (queryList.size() != 0) {
+            return queryList.get(0);
+        }
+        return null;
+
+//        Query query = entityManager.createQuery("select u from User u where u.firstName = :paramName", User.class);
+//        query.setParameter("paramName", name);
+//        Long id = (long) query.getFirstResult();
+//        System.out.println("id -- " + id);
+//        System.out.println(entityManager.getReference(User.class, Long.valueOf(query.getFirstResult())));
+//        return entityManager.getReference(User.class, Long.valueOf(query.getFirstResult()));
     }
 
     @Override
