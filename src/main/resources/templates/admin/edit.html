@@ -9,7 +9,7 @@
 <body>
 <h1>Edit user</h1>
 
-<form method="POST" th:action="@{/updateuser/{id}(id=${user.getId()})}" object="user">
+<form method="POST" th:action="@{/admin/updateuser/{id}(id=${user.getId()})}" object="user">
     <label for="name">Enter new name: </label>
     <input type="text" th:field="*{user.firstName}" id="name" th:value="${user.getFirstName()}"/>
     <label for="last_name">Enter new Last Name: </label>
@@ -19,6 +19,9 @@
     <br/>
     <input type="submit" value="Update!"/>
 </form>
+<br>
+<br>
+<a th:href="@{/logout}">Logout</a>
 
 </body>
 </html>
