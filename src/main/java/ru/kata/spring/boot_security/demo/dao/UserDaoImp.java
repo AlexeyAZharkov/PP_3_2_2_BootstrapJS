@@ -1,10 +1,12 @@
 package ru.kata.spring.boot_security.demo.dao;
 
 import org.springframework.stereotype.Repository;
+import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -15,6 +17,8 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void addUser(User user) {
+//        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        user.addRole(new Role(2L, "ROLE_ADMIN"));
         entityManager.persist(user);
     }
 
