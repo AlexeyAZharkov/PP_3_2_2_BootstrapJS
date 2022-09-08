@@ -1,6 +1,5 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -48,14 +47,12 @@ public class AdminController {
     }
 
     @GetMapping("/delete")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String deleteUser(@RequestParam(value = "id", required = false) Long id) {
         userServiceImp.deleteUser(id);
         return "redirect:/admin/users";
     }
 
     @GetMapping("/edit")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String editUser(@RequestParam(value = "id", required = false) Long id, Model model) {
         model.addAttribute("user", userServiceImp.getUserById(id));
         return "admin/edit";
@@ -66,15 +63,4 @@ public class AdminController {
         userServiceImp.updateUser(id, user);
         return "redirect:/admin/users";
     }
-
-//    @GetMapping("/user")
-//    public String showUser(@RequestParam(value = "id", required = false) Long id, Model model) {
-//        model.addAttribute("userbyid", userServiceImp.getUserById(id));
-//        return "admin/user";
-//    }
-//
-//	@GetMapping(value = "/")
-//	public String adminPage() {
-//		return "admin/admin";
-//	}
 }
