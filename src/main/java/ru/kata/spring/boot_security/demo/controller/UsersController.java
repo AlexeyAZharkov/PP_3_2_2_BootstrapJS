@@ -66,13 +66,17 @@ public class UsersController {
 //	}
 
 	@GetMapping("/user")
-	public String showUser(@RequestParam(value = "id", required = false) Long id, Model model) {
-		model.addAttribute("userbyid", userServiceImp.getUserById(id));
+	public String showUser(@RequestParam(value = "name", required = false) String name, Model model) {
+		model.addAttribute("userbyid", userServiceImp.getUserByName(name));
 		return "user";
 	}
 //
-//	@GetMapping(value = "/")
-//	public String adminPage() {
-//		return "admin/admin";
+//	@GetMapping("/user")
+//	public String showUser(@RequestParam(value = "id", required = false) Long id, Model model) {
+//		model.addAttribute("userbyid", userServiceImp.getUserById(id));
+//		return "user";
 //	}
+
+
+
 }

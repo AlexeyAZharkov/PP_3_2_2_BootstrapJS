@@ -42,6 +42,11 @@ public class UserServiceImp implements UserDetailsService {
    }
 
    @Transactional(readOnly = true)
+   public User getUserByName(String name) {
+      return userDaoImp.getUserByName(name);
+   }
+
+   @Transactional(readOnly = true)
    public List<User> listUsers() {
       return userDaoImp.listUsers();
    }
