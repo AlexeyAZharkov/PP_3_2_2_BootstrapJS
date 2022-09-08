@@ -9,7 +9,7 @@ import ru.kata.spring.boot_security.demo.service.UserServiceImp;
 
 
 @Controller
-@RequestMapping("/admin")
+
 public class UsersController {
 	private final UserServiceImp userServiceImp;
 
@@ -18,61 +18,61 @@ public class UsersController {
 	}
 
 //	@GetMapping(value = "")
-//	public String printWelcome(ModelMap model) {
-//		return "index";
+//	public String printWelcome() {
+//		return "admin/admin";
 //	}
-
-	@GetMapping(value = "/set3users")
-	public String set3users(ModelMap model) {
-		userServiceImp.addUser(new User("Alex", "Zh", "axx"));
-		userServiceImp.addUser(new User("Alex1", "Zh1", "ax11x"));
-		userServiceImp.addUser(new User("Alex2", "Zh2", "ax22x"));
-		return "redirect:/admin/users";
-	}
-
-	@GetMapping(value = "/users")
-	public String userPage(Model model) {
-		model.addAttribute("allUsers", userServiceImp.listUsers());
-		return "admin/users";
-	}
-
-	@GetMapping("/new")
-	public String newPerson(@ModelAttribute("user") User user) {
-		return "admin/new";
-	}
-
-	@PostMapping("/new")
-	public String create(@ModelAttribute("user") User user) {
-		userServiceImp.addUser(user);
-		return "redirect:/admin/users";
-	}
-
-	@GetMapping("/delete")
-	public String deleteUser(@RequestParam(value = "id", required = false) Long id) {
-		userServiceImp.deleteUser(id);
-		return "redirect:/admin/users";
-	}
-
-	@GetMapping("/edit")
-	public String editUser(@RequestParam(value = "id", required = false) Long id, Model model) {
-		model.addAttribute("user", userServiceImp.getUserById(id));
-		return "admin/edit";
-	}
-
-	@PostMapping("/updateuser/{id}")
-	public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
-		userServiceImp.updateUser(id, user);
-		return "redirect:/admin/users";
-	}
+//
+//	@GetMapping(value = "/set3users")
+//	public String set3users(ModelMap model) {
+//		userServiceImp.addUser(new User("Alex", "Zh", "axx"));
+//		userServiceImp.addUser(new User("Alex1", "Zh1", "ax11x"));
+//		userServiceImp.addUser(new User("Alex2", "Zh2", "ax22x"));
+//		return "redirect:/admin/users";
+//	}
+//
+//	@GetMapping(value = "/users")
+//	public String userPage(Model model) {
+//		model.addAttribute("allUsers", userServiceImp.listUsers());
+//		return "admin/users";
+//	}
+//
+//	@GetMapping("/new")
+//	public String newPerson(@ModelAttribute("user") User user) {
+//		return "admin/new";
+//	}
+//
+//	@PostMapping("/new")
+//	public String create(@ModelAttribute("user") User user) {
+//		userServiceImp.addUser(user);
+//		return "redirect:/admin/users";
+//	}
+//
+//	@GetMapping("/delete")
+//	public String deleteUser(@RequestParam(value = "id", required = false) Long id) {
+//		userServiceImp.deleteUser(id);
+//		return "redirect:/admin/users";
+//	}
+//
+//	@GetMapping("/edit")
+//	public String editUser(@RequestParam(value = "id", required = false) Long id, Model model) {
+//		model.addAttribute("user", userServiceImp.getUserById(id));
+//		return "admin/edit";
+//	}
+//
+//	@PostMapping("/updateuser/{id}")
+//	public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+//		userServiceImp.updateUser(id, user);
+//		return "redirect:/admin/users";
+//	}
 
 	@GetMapping("/user")
 	public String showUser(@RequestParam(value = "id", required = false) Long id, Model model) {
 		model.addAttribute("userbyid", userServiceImp.getUserById(id));
-		return "admin/user";
+		return "user";
 	}
-
-	@GetMapping("/")
-	public String adminPage() {
-		return "admin";
-	}
+//
+//	@GetMapping(value = "/")
+//	public String adminPage() {
+//		return "admin/admin";
+//	}
 }
