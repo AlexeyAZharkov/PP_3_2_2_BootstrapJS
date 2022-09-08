@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.service;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,31 +23,37 @@ public class UserServiceImp implements UserDetailsService {
    }
 
    @Transactional
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public void addUser(User user) {
       userDaoImp.addUser(user);
    }
 
    @Transactional
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public void updateUser(Long id, User updatedUser) {
       userDaoImp.updateUser(id, updatedUser);
    }
 
    @Transactional
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public void deleteUser(Long id) {
       userDaoImp.deleteUser(id);
    }
 
    @Transactional(readOnly = true)
+//   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public User getUserById(Long id) {
       return userDaoImp.getUserById(id);
    }
 
    @Transactional(readOnly = true)
+//   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public User getUserByName(String name) {
       return userDaoImp.getUserByName(name);
    }
 
    @Transactional(readOnly = true)
+   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public List<User> listUsers() {
       return userDaoImp.listUsers();
    }
