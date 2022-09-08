@@ -22,8 +22,8 @@
     </thead>
     <tbody>
     <tr th:each="user: ${allUsers}" >
-<!--        <td th:text="${user.getId()}"/>-->
-        <td><a th:href="@{/user(id=${user.id})}" th:text="${user.getId()}"></a></td>
+        <td th:text="${user.getId()}"/>
+<!--        <td><a th:href="@{/user(id=${user.id})}" th:text="${user.getId()}"></a></td>-->
 <!--        <td th:text="${user.getFirstName()}"/>-->
         <td><a th:href="@{/user(name=${user.firstName})}" th:text="${user.getFirstName()}"></a></td>
         <td th:text="${user.getLastName()}"/>
