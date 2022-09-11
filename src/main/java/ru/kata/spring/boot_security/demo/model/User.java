@@ -31,7 +31,7 @@ public class User implements UserDetails {
            joinColumns = @JoinColumn(name = "user_id"),
            inverseJoinColumns = @JoinColumn(name = "roles_id")
    )
-   private Set<Role> roles = new HashSet<>();
+   private Set<Role> roles;
 
 
    public User() {}
@@ -42,12 +42,15 @@ public class User implements UserDetails {
       this.password = password;
    }
 
-   public Set<Role> getRoles() {
-      return roles;
+   public void addRole(Role role) {
+      if (roles == null) {
+         roles = new HashSet<>();
+      }
+      this.roles.add(role);
    }
 
-   public void addRole(Role role) {
-      this.roles.add(role);
+   public Set<Role> getRoles() {
+      return roles;
    }
 
    public void setRoles(Set<Role> roles) {
