@@ -1,11 +1,11 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserServiceImp;
 import java.util.Set;
 
@@ -20,16 +20,15 @@ public class UsersController {
 
 
 	@GetMapping("/user")
-	public String showUser(@RequestParam(value = "name", required = false) String name, Model model) {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-		String currentUserName = authentication.getName();
+	public String showUser(@AuthenticationPrincipal User user, @RequestParam(value = "name", required = false) String name, Model model) {
+		Set<String> roles = AuthorityUtils.authorityListToSet(user.getRoles());
 
-		if (roles.contains("ROLE_ADMIN") || currentUserName.equals(name)) {
+		if (roles.contains("ROLE_ADMIN") || user.getFirstName().equals(name)) {
 			model.addAttribute("userbyid", userServiceImp.getUserByName(name));
 			return "user/user";
 		} else {
 			return "user/notauth";
 		}
 	}
+
 }
