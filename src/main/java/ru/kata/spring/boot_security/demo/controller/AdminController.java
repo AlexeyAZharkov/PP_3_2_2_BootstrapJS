@@ -18,7 +18,6 @@ public class AdminController {
 
     @GetMapping(value = "")
     public String showAdminPage() {
-//        return "login";
         return "admin/admin";
     }
 

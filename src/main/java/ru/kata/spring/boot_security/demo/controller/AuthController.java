@@ -13,8 +13,8 @@ import java.util.Set;
 @Controller
 public class AuthController {
 
-    @GetMapping("")
+    @GetMapping("/login")
     public String loginPage() {
-        return "";
+        return "/login";
     }
 }
