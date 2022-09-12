@@ -18,14 +18,15 @@ public class AdminController {
 
     @GetMapping(value = "")
     public String showAdminPage() {
+//        return "login";
         return "admin/admin";
     }
 
     @GetMapping(value = "/set3users")
     public String set3users(ModelMap model) {
-        userServiceImp.addUser(new User("Alex", "Zh", "axx"));
-        userServiceImp.addUser(new User("Alex1", "Zh1", "ax11x"));
-        userServiceImp.addUser(new User("Alex2", "Zh2", "ax22x"));
+//        userServiceImp.addUser(new User("Alex", "Zh", "axx"));
+//        userServiceImp.addUser(new User("Alex1", "Zh1", "ax11x"));
+//        userServiceImp.addUser(new User("Alex2", "Zh2", "ax22x"));
         return "redirect:/admin/users";
     }
 

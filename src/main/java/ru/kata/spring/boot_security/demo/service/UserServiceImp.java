@@ -58,11 +58,21 @@ public class UserServiceImp implements UserDetailsService {
 
    @Override
    @Transactional(readOnly = true)
-   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-      Optional<User> user = Optional.ofNullable(userDaoImp.getUserByName(username));
+   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+      Optional<User> user = Optional.ofNullable(userDaoImp.getUserByEmail(email));
       if (user.isEmpty()) {
          throw new UsernameNotFoundException("User not found");
       }
       return user.get();
    }
+
+//   @Override
+//   @Transactional(readOnly = true)
+//   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//      Optional<User> user = Optional.ofNullable(userDaoImp.getUserByName(username));
+//      if (user.isEmpty()) {
+//         throw new UsernameNotFoundException("User not found");
+//      }
+//      return user.get();
+//   }
 }

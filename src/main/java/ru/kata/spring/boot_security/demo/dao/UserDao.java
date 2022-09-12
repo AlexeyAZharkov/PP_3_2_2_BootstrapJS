@@ -10,5 +10,6 @@ public interface UserDao {
     void updateUser(Long id, User updatedUser);
     User getUserById(Long id);
     User getUserByName(String name);
+    User getUserByEmail(String email);
     List<User> listUsers();
 }

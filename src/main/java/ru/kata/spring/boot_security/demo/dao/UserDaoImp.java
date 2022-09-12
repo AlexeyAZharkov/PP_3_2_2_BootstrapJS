@@ -16,7 +16,7 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void addUser(User user) {
-        user.addRole(new Role(1L, "ROLE_USER"));
+        user.addRole(new Role(2L, "ROLE_USER"));
         entityManager.persist(user);
     }
 
@@ -40,6 +40,18 @@ public class UserDaoImp implements UserDao {
         List<User> queryList = entityManager.createQuery(
                         "SELECT u FROM User u WHERE u.firstName = :custName", User.class)
                 .setParameter("custName", name)
+                .getResultList();
+        if (queryList.size() != 0) {
+            return queryList.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        List<User> queryList = entityManager.createQuery(
+                        "SELECT u FROM User u WHERE u.email = :custEmail", User.class)
+                .setParameter("custEmail", email)
                 .getResultList();
         if (queryList.size() != 0) {
             return queryList.get(0);

@@ -24,6 +24,11 @@ public class User implements UserDetails {
    @Column(name = "last_name")
    private String lastName;
 
+   @Column(name = "email")
+   private String email;
+
+
+
    @Column(name = "password")
    private String password;
 
@@ -37,11 +42,12 @@ public class User implements UserDetails {
    private Set<Role> roles;
 
    public User() {}
-   
-   public User(String firstName, String lastName, String password) {
+
+   public User(Long id, String firstName, String lastName, String email) {
+      this.id = id;
       this.firstName = firstName;
       this.lastName = lastName;
-      this.password = password;
+      this.email = email;
    }
 
    public void addRole(Role role) {
@@ -81,6 +87,14 @@ public class User implements UserDetails {
 
    public void setLastName(String lastName) {
       this.lastName = lastName;
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
    }
 
    public String getUserPassword() {
