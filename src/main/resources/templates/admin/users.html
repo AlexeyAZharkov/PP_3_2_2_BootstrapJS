@@ -7,32 +7,125 @@
     <title>All users</title>
 </head>
 <body>
-<h1>All Users</h1>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Password</th>
-        <th scope="col">Edit User</th>
-        <th scope="col">Delete User</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user: ${allUsers}" >
-        <td th:text="${user.getId()}"/>
-<!--        <td><a th:href="@{/user(id=${user.id})}" th:text="${user.getId()}"></a></td>-->
-<!--        <td th:text="${user.getFirstName()}"/>-->
-        <td><a th:href="@{/user(name=${user.firstName})}" th:text="${user.getFirstName()}"></a></td>
-        <td th:text="${user.getLastName()}"/>
-        <td th:text="${user.getUserPassword()}"/>
-        <td><a th:href="@{/admin/edit(id=${user.id})}">Edit user</a></td>
-        <td><a th:href="@{/admin/delete(id=${user.id})}">Delete user</a></td>
-    </tr>
-    </tbody>
-</table>
+<div class="container-fluid bg-dark" id="navbarHeader">
+    <div class="row">
+        <div class="col-sm-8 col-md-7 py-4">
+            <h4 class="text-white">About with roles: ADMIN</h4>
+<!--            <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>-->
+        </div>
+        <div class="col-sm-4 offset-md-1 py-4">
+            <a href="../examples/cheatsheet-rtl/" class="ms-auto link-light" hreflang="ar">RTL cheatsheet</a>
+<!--            <h4 class="text-white">Contact</h4>-->
+
+<!--            <ul class="list-unstyled">-->
+<!--                <li><a href="#" class="text-white">Follow on Twitter</a></li>-->
+<!--                <li><a href="#" class="text-white">Like on Facebook</a></li>-->
+<!--                <li><a href="#" class="text-white">Email me</a></li>-->
+<!--            </ul>-->
+        </div>
+    </div>
+</div>
+<!--<h1>All Users</h1>-->
+
+<div class="container-fluid" id="main">
+    <div class="row">
+        <div class="col-3">
+            <nav class="nav flex-column nav-pills nav-justified">
+                <a class="nav-link active" aria-current="page" href="#">Admin</a>
+                <a class="nav-link" href="#">User</a>
+<!--                <a class="nav-link" href="#">Link</a>-->
+<!--                <a class="nav-link disabled">Disabled</a>-->
+            </nav>
+<!--            <h4 class="text-black">About with roles: ADMIN</h4>-->
+<!--            <button type="button" class="btn btn-primary">Admin</button>-->
+            <!--            <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>-->
+        </div>
+        <div class="col-9 bg-light">
+
+            <p class="h1">Admin panel</p>
+
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Users table</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">New user</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                    <div class="col">
+                        <p class="h3">All users</p>
+                    </div>
+
+                    <div class="col  bg-light">
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Password</th>
+                                <th scope="col">Edit User</th>
+                                <th scope="col">Delete User</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user: ${allUsers}" >
+                                <td th:text="${user.getId()}"/>
+                                <!--        <td><a th:href="@{/user(id=${user.id})}" th:text="${user.getId()}"></a></td>-->
+                                <!--        <td th:text="${user.getFirstName()}"/>-->
+                                <td><a th:href="@{/user(name=${user.firstName})}" th:text="${user.getFirstName()}"></a></td>
+                                <td th:text="${user.getLastName()}"/>
+                                <td th:text="${user.getUserPassword()}"/>
+                                <td><a th:href="@{/admin/edit(id=${user.id})}">Edit user</a></td>
+                                <td><a th:href="@{/admin/delete(id=${user.id})}">Delete user</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+                    <h1>Add new user</h1>
+                    <form th:method="POST" th:action="@{/admin/new}" th:object="${user}">
+                        <label for="name">Enter name: </label>
+                        <input type="text" th:field="*{firstName}" id="name"/>
+                        <label for="last_name">Enter Last Name: </label>
+                        <input type="text" th:field="*{lastName}" id="last_name"/>
+                        <label for="password">Enter Password: </label>
+                        <input type="text" th:field="*{password}" id="password"/>
+                        <br/>
+                        <input type="submit" value="Create!"/>
+                    </form>
+
+                </div>
+
+            </div>
+
+
+<!--            <ul class="nav nav-tabs">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" aria-current="page" href="#">Users table</a>-->
+
+<!--                   -->
+
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="#">New user</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
 
 <br>
 <a href="/admin/new">Add new User</a>
@@ -44,5 +137,6 @@
 <a th:href="@{/logout}">Logout</a>
 <br>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
