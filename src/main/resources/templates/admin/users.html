@@ -8,42 +8,45 @@
 </head>
 <body>
 
-<div class="container-fluid bg-dark" id="navbarHeader">
-    <div class="row">
-        <div class="col-sm-8 col-md-7 py-4">
-            <h4 class="text-white">About with roles: ADMIN</h4>
-<!--            <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>-->
-        </div>
-        <div class="col-sm-4 offset-md-1 py-4">
-            <a href="../examples/cheatsheet-rtl/" class="ms-auto link-light" hreflang="ar">RTL cheatsheet</a>
-<!--            <h4 class="text-white">Contact</h4>-->
-
-<!--            <ul class="list-unstyled">-->
-<!--                <li><a href="#" class="text-white">Follow on Twitter</a></li>-->
-<!--                <li><a href="#" class="text-white">Like on Facebook</a></li>-->
-<!--                <li><a href="#" class="text-white">Email me</a></li>-->
-<!--            </ul>-->
-        </div>
+<nav class="navbar bg-dark navbar-expand-lg navbar-dark">
+    <p class="navbar-brand">admin@mail.ru</p>
+    <p class="text-light" class="fw-bold">with roles ADMIN</p>
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="">Logout</a>
+            </li>
+        </ul>
     </div>
-</div>
-<!--<h1>All Users</h1>-->
+</nav>
+
+<!--<div class="container-fluid bg-dark" id="navbarHeader">-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-8 col-md-7 py-4">-->
+<!--            <h4 class="text-white">About with roles: ADMIN</h4>-->
+<!--        </div>-->
+<!--        <div class="col-sm-4 offset-md-1 py-4">-->
+<!--            <a href="../examples/cheatsheet-rtl/" class="ms-auto link-light" hreflang="ar">RTL cheatsheet</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="container-fluid" id="main">
-    <div class="row">
-        <div class="col-3">
+    <div class="row justify-content">
+        <div class="col-2 p-0">
+            <br>
             <nav class="nav flex-column nav-pills nav-justified">
-                <a class="nav-link active" aria-current="page" href="#">Admin</a>
-                <a class="nav-link" href="#">User</a>
-<!--                <a class="nav-link" href="#">Link</a>-->
-<!--                <a class="nav-link disabled">Disabled</a>-->
+                <a class="nav-link active nav-block" aria-current="page" href="#">Admin</a>
+                <a class="nav-link nav-block" href="#">User</a>
             </nav>
-<!--            <h4 class="text-black">About with roles: ADMIN</h4>-->
-<!--            <button type="button" class="btn btn-primary">Admin</button>-->
-            <!--            <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>-->
         </div>
-        <div class="col-9 bg-light">
-
+        <div class="col-10 bg-light">
+            <br>
             <p class="h1">Admin panel</p>
+            <br>
 
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -79,8 +82,10 @@
                                 <td><a th:href="@{/user(name=${user.firstName})}" th:text="${user.getFirstName()}"></a></td>
                                 <td th:text="${user.getLastName()}"/>
                                 <td th:text="${user.getUserPassword()}"/>
-                                <td><a th:href="@{/admin/edit(id=${user.id})}">Edit user</a></td>
-                                <td><a th:href="@{/admin/delete(id=${user.id})}">Delete user</a></td>
+                                <td><a class="btn btn-info" th:href="@{/admin/edit(id=${user.id})}" role="button">Edit</a></td>
+<!--                                <td><a th:href="@{/admin/edit(id=${user.id})}">Edit user</a></td>-->
+<!--                                <td><a th:href="@{/admin/delete(id=${user.id})}">Delete user</a></td>-->
+                                <td><a class="btn btn-danger" th:href="@{/admin/edit(id=${user.id})}" role="button">Delete</a></td>
                             </tr>
                             </tbody>
                         </table>
