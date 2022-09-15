@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,12 @@
 <body>
 
 <nav class="navbar bg-dark navbar-expand-lg navbar-dark">
-    <p class="navbar-brand">admin@mail.ru</p>
-    <p class="text-light">with roles ADMIN</p>
+<!--    Logged user: <span sec:authentication="name">Bob</span>-->
+<!--    Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>-->
+    <p class="navbar-brand" th:text="${usersAuth.getEmail()}"/>
+<!--    <p class="navbar-brand" sec:authentication="name">VALUE</p>-->
+    <p class="text-light">with roles: </p>
+    <p class="text-light" th:text="${usersAuth.getStringRoles()}"/>
 <!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
 <!--        <span class="navbar-toggler-icon"></span>-->
 <!--    </button>-->
@@ -85,7 +89,7 @@
                                 <td th:text="${user.getLastName()}"/>
                                 <td th:text="${user.getAge()}"/>
                                 <td th:text="${user.getEmail()}"/>
-                                <td th:text="${user.getUserPassword()}"/>
+                                <td th:text="${user.getStringRoles()}"/>
                                 <td><a class="btn btn-info" th:href="@{/admin/edit(id=${user.id})}" role="button">Edit</a></td>
 <!--                                <td><a th:href="@{/admin/edit(id=${user.id})}">Edit user</a></td>-->
 <!--                                <td><a th:href="@{/admin/delete(id=${user.id})}">Delete user</a></td>-->
@@ -156,10 +160,6 @@
                     </div>
 
 
-
-
-
-
                     <form th:method="POST" th:action="@{/admin/new}" th:object="${user}">
                         <label for="name">Enter name: </label>
                         <input type="text" th:field="*{firstName}" id="name"/>
@@ -167,6 +167,10 @@
                         <input type="text" th:field="*{lastName}" id="last_name"/>
                         <label for="password">Enter Password: </label>
                         <input type="text" th:field="*{password}" id="password"/>
+                        <label for="age1">Enter Password: </label>
+                        <input type="text" th:field="*{age}" id="age1"/>
+                        <label for="email1">Enter Password: </label>
+                        <input type="text" th:field="*{email}" id="email1"/>
                         <br/>
                         <input type="submit" value="Create!"/>
                     </form>

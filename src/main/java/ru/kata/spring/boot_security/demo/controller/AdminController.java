@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -30,8 +31,9 @@ public class AdminController {
     }
 
     @GetMapping(value = "/users")
-    public String userPage(Model model) {
+    public String userPage(@ModelAttribute("user") User user, @AuthenticationPrincipal User userAuth, Model model) {
         model.addAttribute("allUsers", userServiceImp.listUsers());
+        model.addAttribute("usersAuth", userAuth);
         return "admin/users";
     }
 
@@ -46,12 +48,12 @@ public class AdminController {
 //    return "redirect:/admin/users";
 //}
 
-    @GetMapping("/users")
-    public String newPerson(@ModelAttribute("user") User user) {
-        return "admin/users";
-    }
+//    @GetMapping("/users")
+//    public String newPerson(@ModelAttribute("user") User user) {
+//        return "admin/users";
+//    }
 
-    @PostMapping("/users")
+    @PostMapping("/new")
     public String create(@ModelAttribute("user") User user) {
         userServiceImp.addUser(user);
         return "redirect:/admin/users";
