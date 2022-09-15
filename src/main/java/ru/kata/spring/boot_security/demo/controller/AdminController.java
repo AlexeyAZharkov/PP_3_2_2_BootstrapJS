@@ -35,12 +35,23 @@ public class AdminController {
         return "admin/users";
     }
 
-    @GetMapping("/new")
+//    @GetMapping("/new")
+//    public String newPerson(@ModelAttribute("user") User user) {
+//        return "admin/new";
+//    }
+
+//    @PostMapping("/new")
+//    public String create(@ModelAttribute("user") User user) {
+//    userServiceImp.addUser(user);
+//    return "redirect:/admin/users";
+//}
+
+    @GetMapping("/users")
     public String newPerson(@ModelAttribute("user") User user) {
-        return "admin/new";
+        return "admin/users";
     }
 
-    @PostMapping("/new")
+    @PostMapping("/users")
     public String create(@ModelAttribute("user") User user) {
         userServiceImp.addUser(user);
         return "redirect:/admin/users";
