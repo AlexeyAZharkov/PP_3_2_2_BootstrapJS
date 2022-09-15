@@ -34,6 +34,7 @@ public class AdminController {
     public String userPage(@ModelAttribute("user") User user, @AuthenticationPrincipal User userAuth, Model model) {
         model.addAttribute("allUsers", userServiceImp.listUsers());
         model.addAttribute("usersAuth", userAuth);
+        model.addAttribute("userIsAdmin", userAuth.getStringRoles().contains("ADMIN"));
         return "admin/users";
     }
 

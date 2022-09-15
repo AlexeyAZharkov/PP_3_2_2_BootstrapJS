@@ -35,7 +35,7 @@ public class UserServiceImp implements UserDetailsService {
    }
 
    @Transactional
-   @PreAuthorize("hasRole('ROLE_ADMIN')")
+//   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public void deleteUser(Long id) {
       userDaoImp.deleteUser(id);
    }
@@ -51,7 +51,7 @@ public class UserServiceImp implements UserDetailsService {
    }
 
    @Transactional(readOnly = true)
-   @PreAuthorize("hasRole('ROLE_ADMIN')")
+//   @PreAuthorize("hasRole('ROLE_ADMIN')")
    public List<User> listUsers() {
       return userDaoImp.listUsers();
    }

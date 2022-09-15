@@ -19,16 +19,24 @@ public class UsersController {
 	}
 
 
-	@GetMapping("/user")
-	public String showUser(@AuthenticationPrincipal User user, @RequestParam(value = "name", required = false) String name, Model model) {
-		Set<String> roles = AuthorityUtils.authorityListToSet(user.getRoles());
+//	@GetMapping("/user")
+//	public String showUser(@AuthenticationPrincipal User user, @RequestParam(value = "name", required = false) String name, Model model) {
+//		Set<String> roles = AuthorityUtils.authorityListToSet(user.getRoles());
+//
+//		if (roles.contains("ROLE_ADMIN") || user.getFirstName().equals(name)) {
+//			model.addAttribute("userbyid", userServiceImp.getUserByName(name));
+//			return "user/user";
+//		} else {
+//			return "user/notauth";
+//		}
+//	}
 
-		if (roles.contains("ROLE_ADMIN") || user.getFirstName().equals(name)) {
-			model.addAttribute("userbyid", userServiceImp.getUserByName(name));
-			return "user/user";
-		} else {
-			return "user/notauth";
-		}
+	@GetMapping(value = "/user")
+	public String userPage(@AuthenticationPrincipal User userAuth, Model model) {
+//		model.addAttribute("allUsers", userServiceImp.listUsers());
+		model.addAttribute("usersAuth", userAuth);
+		model.addAttribute("userIsAdmin", userAuth.getStringRoles().contains("ADMIN"));
+		return "user";
 	}
 
 }
