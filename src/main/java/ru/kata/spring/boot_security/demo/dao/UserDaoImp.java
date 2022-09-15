@@ -16,7 +16,11 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void addUser(User user) {
-        user.addRole(new Role(2L, "ROLE_USER"));
+        if (user.getRole().equals("ADMIN")) {
+            user.addRoleForm(new Role(1L, "ROLE_ADMIN"));
+        } else if (user.getRole().equals("USER")) {
+            user.addRoleForm(new Role(2L, "ROLE_USER"));
+        }
         entityManager.persist(user);
     }
 

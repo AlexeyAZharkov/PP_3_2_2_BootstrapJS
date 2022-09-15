@@ -9,7 +9,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.UserServiceImp;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("")
 public class AdminController {
     private final UserServiceImp userServiceImp;
 
@@ -30,12 +30,12 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-    @GetMapping(value = "/users")
+    @GetMapping(value = "/admin")
     public String userPage(@ModelAttribute("user") User user, @AuthenticationPrincipal User userAuth, Model model) {
         model.addAttribute("allUsers", userServiceImp.listUsers());
         model.addAttribute("usersAuth", userAuth);
         model.addAttribute("userIsAdmin", userAuth.getStringRoles().contains("ADMIN"));
-        return "admin/users";
+        return "admin";
     }
 
 //    @GetMapping("/new")
@@ -57,13 +57,13 @@ public class AdminController {
     @PostMapping("/new")
     public String create(@ModelAttribute("user") User user) {
         userServiceImp.addUser(user);
-        return "redirect:/admin/users";
+        return "redirect:/admin";
     }
 
     @GetMapping("/delete")
     public String deleteUser(@RequestParam(value = "id", required = false) Long id) {
         userServiceImp.deleteUser(id);
-        return "redirect:/admin/users";
+        return "redirect:/admin";
     }
 
     @GetMapping("/edit")

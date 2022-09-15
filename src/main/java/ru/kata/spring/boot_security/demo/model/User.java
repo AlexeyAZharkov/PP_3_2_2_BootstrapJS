@@ -33,6 +33,9 @@ public class User implements UserDetails {
    @Column(name = "password")
    private String password;
 
+   @Transient
+   private String role;
+
    @ManyToMany(fetch = FetchType.LAZY)
    @Fetch(FetchMode.JOIN)   // Здесь, наверное, не правильно решил...
    @JoinTable(
@@ -44,18 +47,24 @@ public class User implements UserDetails {
 
    public User() {}
 
-   public User(String firstName, String lastName, int age, String email, String password) {
+   public User(String firstName, String lastName, int age, String email, String password, String role) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.age = age;
       this.email = email;
       this.password = password;
+      this.role = role;
    }
 
    public void addRole(Role role) {
       if (roles == null) {
          roles = new HashSet<>();
       }
+      this.roles.add(role);
+   }
+
+   public void addRoleForm(Role role) {
+      roles = new HashSet<>();
       this.roles.add(role);
    }
 
@@ -121,6 +130,14 @@ public class User implements UserDetails {
 
    public void setPassword(String password) {
       this.password = password;
+   }
+
+   public String getRole() {
+      return role;
+   }
+
+   public void setRole(String role) {
+      this.role = role;
    }
 
    @Override
