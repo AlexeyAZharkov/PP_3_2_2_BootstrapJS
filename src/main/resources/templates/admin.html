@@ -82,19 +82,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="user: ${allUsers}" >
-                                <td th:text="${user.getId()}"/>
+                            <tr th:each="userFromList: ${allUsers}" >
+                                <td th:text="${userFromList.getId()}"/>
                                 <!--        <td><a th:href="@{/user(id=${user.id})}" th:text="${user.getId()}"></a></td>-->
                                 <!--        <td th:text="${user.getFirstName()}"/>-->
-                                <td><a th:href="@{/user(name=${user.firstName})}" th:text="${user.getFirstName()}"></a></td>
-                                <td th:text="${user.getLastName()}"/>
-                                <td th:text="${user.getAge()}"/>
-                                <td th:text="${user.getEmail()}"/>
-                                <td th:text="${user.getStringRoles()}"/>
+                                <td th:text="${userFromList.getFirstName()}"/>
+                                <td th:text="${userFromList.getLastName()}"/>
+                                <td th:text="${userFromList.getAge()}"/>
+                                <td th:text="${userFromList.getEmail()}"/>
+                                <td th:text="${userFromList.getStringRoles()}"/>
 <!--                                <td><a class="btn btn-info" th:href="@{/admin/edit(id=${user.id})}" role="button">Edit</a></td>-->
-                                <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalEdit">Edit</button></td>
+                                <td><button type="button" class="btn btn-info" data-bs-toggle="modal" th:data-bs-target="'#m'+ ${userFromList.getId()}">Edit</button></td>
 
-                                <td><a class="btn btn-danger" th:href="@{/admin/delete(id=${user.id})}" role="button">Delete</a></td>
+                                <td><a class="btn btn-danger" th:href="@{/admin/delete(id=${userFromList.id})}" role="button">Delete</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -178,7 +178,7 @@
             </div>
 
             <!-- Modal Edit -->
-            <div class="modal fade" id="modalEdit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="m1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -190,7 +190,7 @@
                             <form class="text-center" th:method="POST" th:action="@{/updateuser/{id}(id=${user.getId()})}" th:object="${user}">
                                 <div class="form-group">
                                     <label for="id" class="form-label"><strong>ID</strong></label>
-                                    <input type="text" class="form-control" th:field="*{id}" id="id" th:value="${user.getId()}" aria-describedby="emailHelp">
+                                    <input type="text" class="form-control" th:field="*{id}" id="id" th:value="${user.getId()}" aria-describedby="emailHelp" disabled>
                                 </div>
 
                                 <div class="form-group">
