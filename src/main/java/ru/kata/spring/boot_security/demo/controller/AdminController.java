@@ -35,6 +35,7 @@ public class AdminController {
         model.addAttribute("allUsers", userServiceImp.listUsers());
         model.addAttribute("usersAuth", userAuth);
         model.addAttribute("userIsAdmin", userAuth.getStringRoles().contains("ADMIN"));
+        System.out.println(userServiceImp.listUsers());
         return "admin";
     }
 
